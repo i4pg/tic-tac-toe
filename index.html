@@ -87,10 +87,43 @@
   </nav>
   <section class="section">
     <div class="container">
-      <div class="columns">
-        <div id="player" class="column">
+      <div class="columns is-desktop">
+        <div id="form" class="column is-three-fifths is-offset-one-fifth">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">New Game</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text" placeholder="Player 1 Name">
+                  <span class="icon is-small is-left">
+                    <i class="fa-solid fa-x"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                  <input class="input" type="email" placeholder="Player 2 Name">
+                  <span class="icon is-small is-left">
+                    <i class="fa-solid fa-o"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" id="start">
+                  START
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="game-board" class="column">
+
+        <div id="board" class="column">
           <table class="table is-bordered">
             <tbody>
               <td></td>
@@ -109,7 +142,17 @@
             </tbody>
           </table>
         </div>
-        <div id="game" class="column">
+        <div id="stats" class="column content">
+          <div id="stat">
+            <h2 id="player-name">Abdulalh:
+              <span id="player-ponits">10</span>
+            </h2>
+          </div>
+          <div id="stat">
+            <h2 id="player-name">Mahfouz:
+              <span id="player-ponits">9</span>
+            </h2>
+          </div>
         </div>
       </div>
     </div>
@@ -120,7 +163,8 @@
         <img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
       </a>
       <p>
-        <strong>Library</strong> by <a href="https://github.com/i4pg">Abdullah Alattas</a>. The source code is licensed
+        <strong>Tic Tac Toe</strong> by <a href="https://github.com/i4pg">Abdullah Alattas</a>. The source code is
+        licensed
         <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
         is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
       </p>
@@ -128,6 +172,7 @@
   </footer>
   <script src="scripts/navbar_toggle.js"></script>
   <script src="scripts/player.js"></script>
+  <script src="scripts/game_form.js"></script>
   <script src="scripts/game.js"></script>
   <script src="scripts/gameBoard.js"></script>
   <script src="scripts/displayController.js"></script>
