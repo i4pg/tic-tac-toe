@@ -1,18 +1,12 @@
-const gameAPI = (players) => {
-  let playerOne = player(players[0].name, players[0].mark)
-  let playerTwo = player(players[1].name, players[1].mark)
-  let gameBoard = board()
+const game = (() => {
+  let currentPlayer = newGame.playerOne
 
-  function isDraw() {
-    return gameBoard.rows.every(cell => /a/.test(cell))
-  }
+  function assign(htmlCell, index, i) {
+    if (newGame.board.rows[index][i] !== "_") return
 
-  function win() {
-    return gameBoard.rows.some(row => { row[0] === row[1] === row[2] })
-      || gameBoard.rows[0].some((cell, i) => {
-        cell === gameBoard.rows[1][i]
-          && cell === gameBoard.rows[2][i]
-      })
+    newGame.board.assign(index, i, currentPlayer.mark.value)
+    htmlCell.textContent = currentPlayer.mark.value
+    htmlCell.className = currentPlayer.mark.color
   }
-  return { playerTwo, playerOne, board, isDraw, win }
-}
+  return { assign }
+})()

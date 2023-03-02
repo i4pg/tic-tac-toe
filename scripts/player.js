@@ -1,3 +1,3 @@
-const player = (name, mark) => {
+const newPlayer = (name, mark) => {
   return { name, mark }
 }

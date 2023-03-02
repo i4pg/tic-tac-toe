@@ -1,4 +1,4 @@
-const board = () => {
+const newBoard = () => {
   let rows = [
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -13,5 +13,9 @@ const board = () => {
     ]
   }
 
-  return { rows, reset }
+  function assign(row, column, value) {
+    rows[row][column] = value
+  }
+
+  return { rows, reset, assign }
 };
