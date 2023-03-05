@@ -4,7 +4,7 @@
     .forEach((row, index) => {
       [...row.children]
         .forEach((cell, i) => {
-          cell.onclick = () => game.assign(index, i)
+          cell.onclick = () => controller(cell).assign(index, i)
         });
     });
 })()

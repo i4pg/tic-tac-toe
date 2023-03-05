@@ -22,5 +22,8 @@ const ticTacToe = (() => {
     newGame = gameAPI(players)
   }
 
+
+
   startBtn.addEventListener("click", setGame)
+  return { startBtn }
 })()

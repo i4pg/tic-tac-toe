@@ -1,4 +1,5 @@
 const newBoard = () => {
+  let parent = this
   let rows = [
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -6,7 +7,7 @@ const newBoard = () => {
   ]
 
   function reset() {
-    rows = [
+    parent.rows = [
       ["_", "_", "_"],
       ["_", "_", "_"],
       ["_", "_", "_"],
@@ -14,6 +15,8 @@ const newBoard = () => {
   }
 
   function assign(row, column, value) {
+    if (rows[row][column] !== "_") return
+
     rows[row][column] = value
   }
 
