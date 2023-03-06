@@ -1,4 +1,4 @@
-const ticTacToe = (() => {
+const displayController = (() => {
   const startBtn = document.getElementById("start")
   const inputs = document.querySelectorAll("input")
   const form = document.getElementById("form")
@@ -19,11 +19,12 @@ const ticTacToe = (() => {
     board.style.visibility = "visible"
     stats.style.visibility = "visible"
     form.remove()
-    newGame = gameAPI(players)
+    ticTacToe = gameAPI(players)
+    game().updateStats()
+    restart.addEventListener("click", () => game().reset())
   }
 
 
 
   startBtn.addEventListener("click", setGame)
-  return { startBtn }
 })()

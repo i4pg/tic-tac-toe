@@ -1,5 +1,4 @@
 const newBoard = () => {
-  let parent = this
   let rows = [
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -7,11 +6,11 @@ const newBoard = () => {
   ]
 
   function reset() {
-    parent.rows = [
-      ["_", "_", "_"],
-      ["_", "_", "_"],
-      ["_", "_", "_"],
-    ]
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        rows[i][j] = "_"
+      }
+    }
   }
 
   function assign(row, column, value) {

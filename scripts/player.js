@@ -1,3 +1,5 @@
 const newPlayer = (name, mark) => {
-  return { name, mark }
+  let score = 0
+
+  return { name, mark, score }
 }
