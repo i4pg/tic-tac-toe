@@ -1,4 +1,6 @@
 const displayController = (() => {
+  document.getElementById("new-game").addEventListener("click", () => window.location.reload())
+
   const startBtn = document.getElementById("start")
   const inputs = document.querySelectorAll("input")
   const form = document.getElementById("form")
@@ -21,7 +23,7 @@ const displayController = (() => {
     form.remove()
     ticTacToe = gameAPI(players)
     game().updateStats()
-    restart.addEventListener("click", () => game().reset())
+    restart.addEventListener("click", () => game().restart())
   }
 
 

@@ -1,4 +1,27 @@
 const game = () => {
+  function message(status, player = undefined) {
+    return `
+<article id="flash" class="is-12 column message is-${player ? player.mark.color.split("-")[2] : ""}">
+  ${player ?
+        `
+  <div class="message-header">
+    <p>${status}</p>
+  </div>`
+        : ""}
+${player ?
+        `
+  <div class="message-body">
+<strong>${player.name}</strong> congratulations for the winning and face the tough time
+  </div>
+</article>`
+        :
+        `<div class="message-body">
+${status}
+  </div>
+</article>`
+      }
+`
+  }
 
   function resetDOMBoard() {
     document.querySelectorAll("tr")
@@ -11,17 +34,15 @@ const game = () => {
       });
   }
 
-  function reset() {
+  function restart() {
     ticTacToe.board.reset()
     resetDOMBoard()
   }
 
   function updateStats() {
-    // Already initialized in game API as instances of Player
-    let players = [ticTacToe.playerOne, ticTacToe.playerTwo]
-
     Array.from(stats.children).forEach((child, i) => {
-      let p = players[i]
+      let ps = [ticTacToe.playerOne, ticTacToe.playerTwo]
+      let p = ps[i]
 
       child.firstElementChild.textContent = p.name
       child.firstElementChild.className = p.mark.color
@@ -30,13 +51,17 @@ const game = () => {
     })
   }
 
-  function gameStatus(currentPlayer) {
-    if (ticTacToe.win()) {
+  function checkGameStatus(currentPlayer) {
+    if (ticTacToe.isWin()) {
       currentPlayer.score++
+      restart()
+      middle.insertAdjacentHTML("afterbegin", message("Yay!", currentPlayer))
+      flash.addEventListener("click", () => flash.remove())
       updateStats()
-      clear()
     } else if (ticTacToe.isDraw()) {
-      clear()
+      middle.insertAdjacentHTML("afterbegin", message("Draw!"))
+      flash.addEventListener("click", () => flash.remove())
+      restart()
     }
   }
 
@@ -49,8 +74,8 @@ const game = () => {
     ticTacToe.board.assign(index, i, currentPlayer)
     cell.textContent = value
     cell.className = color
-    gameStatus(currentPlayer)
+    checkGameStatus(currentPlayer)
   }
 
-  return { assign, reset, updateStats }
+  return { assign, restart, updateStats }
 }

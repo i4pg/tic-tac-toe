@@ -2,7 +2,8 @@
   visibility: hidden;
 }
 
-td {
+td, #flash {
   cursor: pointer;
 }
+
 
