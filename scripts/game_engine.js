@@ -1,4 +1,5 @@
-const game = () => {
+const gameEngine = () => {
+  // this is the flash message to congrats the players
   function message(status, player = undefined) {
     return `
 <div id="flash" class="notification is-12 column is-${player ? player.mark.color.split("-")[2] : ""}">
@@ -47,17 +48,25 @@ ${player ?
     })
   }
 
+  function insertFlash(player = undefined) {
+    player
+      ? middle.insertAdjacentHTML("afterbegin", message("Yay!", player))
+      : middle.insertAdjacentHTML("afterbegin", message("Draw!"))
+  }
+
+  function newRound(player = undefined) {
+    insertFlash(player ? player : "")
+    flash.addEventListener("click", () => flash.remove())
+    restart()
+    updateStats()
+  }
+
   function checkGameStatus(currentPlayer) {
     if (ticTacToe.isWin()) {
       currentPlayer.score++
-      restart()
-      middle.insertAdjacentHTML("afterbegin", message("Yay!", currentPlayer))
-      flash.addEventListener("click", () => flash.remove())
-      updateStats()
+      newRound(currentPlayer)
     } else if (ticTacToe.isDraw()) {
-      middle.insertAdjacentHTML("afterbegin", message("Draw!"))
-      flash.addEventListener("click", () => flash.remove())
-      restart()
+      newRound()
     }
   }
 

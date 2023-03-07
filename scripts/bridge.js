@@ -5,7 +5,7 @@
       [...row.children]
         .forEach((cell, i) => {
           cell.onclick = () => {
-            game().assign(cell, index, i)
+            gameEngine().assign(cell, index, i)
           }
         });
     });
