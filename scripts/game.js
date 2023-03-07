@@ -40,14 +40,18 @@ ${status}
   }
 
   function updateStats() {
-    Array.from(stats.children).forEach((child, i) => {
-      let ps = [ticTacToe.playerOne, ticTacToe.playerTwo]
-      let p = ps[i]
+    const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
+    const l = document.getElementById("stats-left")
+    const r = document.getElementById("stats-right")
 
-      child.firstElementChild.textContent = p.name
-      child.firstElementChild.className = p.mark.color
-      child.children[1].textContent = p.score
-      child.children[1].className = p.mark.color
+    [l, r].forEach((state, i) => {
+      console.log(state)
+      // const player = players[i]
+
+      // state.firstElementChild.textContent = player.name
+      // state.firstElementChild.className = player.mark.color
+      // state.lastElementChild.textContent = player.score
+      // state.lastElementChild.className = player.mark.color
     })
   }
 

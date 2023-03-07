@@ -1,9 +1,7 @@
-#board, #stats {
+#board, #stats, #restart {
   visibility: hidden;
 }
 
 td, #flash {
   cursor: pointer;
 }
-
-

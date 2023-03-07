@@ -60,6 +60,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            <button id="restart" type="button" class="button is-link">Restart</button>
             <button class="button">
               <span class="icon">
                 <i class="fab fa-github"></i>
@@ -80,7 +81,6 @@
             <a class="button is-light" id="new-game">
               New Game
             </a>
-            <button id="restart" type="button" class="button is-link">Restart</button>
           </div>
         </div>
       </div>
@@ -124,6 +124,11 @@
           </div>
         </div>
 
+        <div id="stats-left" class="column columns content">
+          <h2 class="column"></h2>
+          <p class="column"></p>
+        </div>
+
         <div id="board" class="column is-four-fifths">
           <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
             <tbody>
@@ -143,15 +148,9 @@
             </tbody>
           </table>
         </div>
-        <div id="stats" class="column content">
-          <div class="columns">
-            <h2 class="column"></h2>
-            <p class="column"></p>
-          </div>
-          <div class="columns">
-            <h2 class="column"></h2>
-            <p class="column"></p>
-          </div>
+        <div id="stats-right" class="column columns content">
+          <h2 class="column"></h2>
+          <p class="column"></p>
         </div>
       </div>
     </div>
