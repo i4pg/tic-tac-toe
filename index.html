@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link href="style/style.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="assest/favicon/tic-tac-toe.png" />
   </link>
 </head>
 
@@ -15,7 +16,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <i class="fa-solid fa-book">
+        <i class="fa-solid fa-gamepad">
           Odin Tic
         </i>
       </a>
@@ -47,7 +48,7 @@
               Odin
             </a>
             <a class="navbar-item" href="https://bulma.io">
-              bulma
+              Bulma
             </a>
             <hr class="navbar-divider">
             <a class="navbar-item" href="https://github.com/i4pg/tic-tac-toe/issues/new/choose">
@@ -60,7 +61,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <button id="restart" type="button" class="button is-link">Restart</button>
+            <button id="restart" type="button" class="button is-outlined is-link">Restart</button>
             <button class="button">
               <span class="icon">
                 <i class="fab fa-github"></i>
@@ -79,15 +80,30 @@
               </a>
             </button>
             <a class="button is-light" id="new-game">
-              New Game
+              <span class="icon">
+                <i class="fa-solid fa-plus"></i>
+              </span>
+              <span>New Game</span>
             </a>
           </div>
         </div>
       </div>
     </div>
   </nav>
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <p class="title">
+      </p>
+      <p class="subtitle">
+      </p>
+    </div>
+  </section>
   <section class="section">
     <div class="container">
+      <div id="timer" class="content column is-three-fifths is-offset-one-fifth">
+        <h2></h2>
+        <progress class="progress" max="100">15%</progress>
+      </div>
       <div class="columns is-desktop is-multiline" id="middle">
         <div id="form" class="column is-three-fifths is-offset-one-fifth">
           <div class="field is-horizontal">
@@ -113,11 +129,15 @@
               </div>
             </div>
           </div>
+          <hr>
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <button class="button is-primary" id="start">
-                  START
+                <button class="is-rounded button is-responsive is-fullwidth is-success" id="start">
+                  <span class="icon is-small">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span>START</span>
                 </button>
               </div>
             </div>
@@ -126,7 +146,7 @@
 
         <div id="stats-left" class="column columns content">
           <h2 class="column"></h2>
-          <p class="column"></p>
+          <h2 class="column"></h2>
         </div>
 
         <div id="board" class="column is-four-fifths">
@@ -150,7 +170,7 @@
         </div>
         <div id="stats-right" class="column columns content">
           <h2 class="column"></h2>
-          <p class="column"></p>
+          <h2 class="column"></h2>
         </div>
       </div>
     </div>

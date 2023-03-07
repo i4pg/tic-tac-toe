@@ -4,7 +4,9 @@
     .forEach((row, index) => {
       [...row.children]
         .forEach((cell, i) => {
-          cell.onclick = () => game().assign(cell, index, i)
+          cell.onclick = () => {
+            game().assign(cell, index, i)
+          }
         });
     });
 })()

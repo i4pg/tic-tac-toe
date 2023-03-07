@@ -1,26 +1,18 @@
 const game = () => {
   function message(status, player = undefined) {
     return `
-<article id="flash" class="is-12 column message is-${player ? player.mark.color.split("-")[2] : ""}">
-  ${player ?
-        `
-  <div class="message-header">
-    <p>${status}</p>
-  </div>`
-        : ""}
+<div id="flash" class="notification is-12 column is-${player ? player.mark.color.split("-")[2] : ""}">
+  <button class="delete"></button>
 ${player ?
         `
-  <div class="message-body">
-<strong>${player.name}</strong> congratulations for the winning and face the tough time
-  </div>
-</article>`
-        :
-        `<div class="message-body">
-${status}
-  </div>
-</article>`
-      }
+  <strong>${player.name}</strong> congratulations for the winning and face the tough time
 `
+        :
+        `
+<strong>${status}</strong>
+`
+      }
+</div>`
   }
 
   function resetDOMBoard() {
@@ -43,15 +35,15 @@ ${status}
     const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
     const l = document.getElementById("stats-left")
     const r = document.getElementById("stats-right")
+    let states = [l, r]
 
-    [l, r].forEach((state, i) => {
-      console.log(state)
-      // const player = players[i]
+    states.forEach((state, i) => {
+      const player = players[i]
 
-      // state.firstElementChild.textContent = player.name
-      // state.firstElementChild.className = player.mark.color
-      // state.lastElementChild.textContent = player.score
-      // state.lastElementChild.className = player.mark.color
+      state.firstElementChild.textContent = player.name
+      state.firstElementChild.className = player.mark.color
+      state.lastElementChild.textContent = player.score
+      state.lastElementChild.className = player.mark.color
     })
   }
 
@@ -69,6 +61,20 @@ ${status}
     }
   }
 
+  function updateTimer() {
+    currentPlayer = ticTacToe.currentPlayer()
+    const timer = document.getElementById("timer")
+    const header = timer.firstElementChild
+    const bar = timer.lastElementChild
+    let color = currentPlayer.mark.color
+    let name = currentPlayer.name
+
+    header.textContent = name + "'s turn"
+    header.className = color
+    bar.className = `is-${color.split("-")[2]} progress`
+    ticTacToe.currentPlayer()
+  }
+
   function assign(cell, index, i) {
     if (ticTacToe.board.rows[index][i] !== "_") return
     let currentPlayer = ticTacToe.currentPlayer()
@@ -79,6 +85,7 @@ ${status}
     cell.textContent = value
     cell.className = color
     checkGameStatus(currentPlayer)
+    updateTimer()
   }
 
   return { assign, restart, updateStats }

@@ -7,6 +7,7 @@ const displayController = (() => {
   const statsLeft = document.getElementById("stats-left")
   const statsRight = document.getElementById("stats-right")
   const board = document.getElementById("board")
+  const timer = document.getElementById("timer")
   let players = new Array;
 
   function extractPlayerInfo(input) {
@@ -19,7 +20,7 @@ const displayController = (() => {
 
   function setGame() {
     inputs.forEach(extractPlayerInfo);
-    [board, statsLeft, statsRight, restart].forEach(element => element.style.visibility = "visible")
+    [board, statsLeft, statsRight, restart, timer].forEach(element => element.style.visibility = "visible")
     form.remove()
     ticTacToe = gameAPI(players)
     game().updateStats()
