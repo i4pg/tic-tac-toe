@@ -20,7 +20,7 @@ const prepareGame = (() => {
     const statsLeft = document.getElementById("stats-left")
     const statsRight = document.getElementById("stats-right")
     const timer = document.getElementById("timer")
-    const form = document.getElementById("timer")
+    const form = document.getElementById("form")
 
     inputs.forEach(extractPlayerInfo);
     [board, statsLeft, statsRight, restart, timer]
