@@ -88,5 +88,5 @@ ${player ?
     updateTimer()
   }
 
-  return { assign, restart, updateStats }
+  return { assign, restart, updateStats, updateTimer }
 }

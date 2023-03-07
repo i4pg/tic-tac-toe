@@ -24,6 +24,7 @@ const displayController = (() => {
     form.remove()
     ticTacToe = gameAPI(players)
     game().updateStats()
+    game().updateTimer()
     restart.addEventListener("click", () => game().restart())
   }
 
