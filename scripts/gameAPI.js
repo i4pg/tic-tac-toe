@@ -34,13 +34,13 @@ const gameAPI = (players) => {
       })
     }
 
-    function diagnosal1() {
+    function diagonal1() {
       return board.rows[1][1] !== "_"
         && board.rows[1][1] === board.rows[0][0]
         && board.rows[1][1] === board.rows[2][2]
     }
 
-    function diagnosal2() {
+    function diagonal2() {
       return board.rows[1][1] !== "_"
         && board.rows[1][1] === board.rows[0][2]
         && board.rows[1][1] === board.rows[2][0]
@@ -48,8 +48,8 @@ const gameAPI = (players) => {
 
     if (horizontal()
       || vertical()
-      || diagnosal1()
-      || diagnosal2()) {
+      || diagonal1()
+      || diagonal2()) {
       return true
     }
   }
