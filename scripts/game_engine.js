@@ -1,4 +1,6 @@
 const gameEngine = () => {
+  const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
+
   // this is the flash message to congrats the players
   function message(status, player = undefined) {
     return `
@@ -14,6 +16,10 @@ ${player ?
 `
       }
 </div>`
+  }
+
+  function isSinglePlayer() {
+    return players.some(player => player.name === "Computer")
   }
 
   function resetDOMBoard() {
@@ -33,7 +39,6 @@ ${player ?
   }
 
   function updateStats() {
-    const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
     const l = document.getElementById("stats-left")
     const r = document.getElementById("stats-right")
     let states = [l, r]
@@ -71,31 +76,80 @@ ${player ?
   }
 
   function updateTimer() {
-    currentPlayer = ticTacToe.currentPlayer()
+    let p = ticTacToe.getCurrentPlayer()
     const timer = document.getElementById("timer")
     const header = timer.firstElementChild
     const bar = timer.lastElementChild
-    let color = currentPlayer.mark.color
-    let name = currentPlayer.name
+    let color = p.mark.color
+    let name = p.name
 
     header.textContent = name + "'s turn"
     header.className = color
     bar.className = `is-${color.split("-")[2]} progress`
-    ticTacToe.currentPlayer()
   }
 
   function assign(cell, index, i) {
     if (ticTacToe.board.rows[index][i] !== "_") return
-    let currentPlayer = ticTacToe.currentPlayer()
-    let value = currentPlayer.mark.value
-    let color = currentPlayer.mark.color
+    cell = typeof cell === "number" ? document.querySelectorAll("td")[cell] : cell
 
-    ticTacToe.board.assign(index, i, currentPlayer)
+    let p = ticTacToe.getCurrentPlayer()
+    let value = p.mark.value
+    let color = p.mark.color
+
+    ticTacToe.board.assign(index, i, p)
     cell.textContent = value
     cell.className = color
-    checkGameStatus(currentPlayer)
+    main(p)
+  }
+
+  function update() {
+    updateStats()
     updateTimer()
   }
 
-  return { assign, restart, updateStats, updateTimer }
+  function isComputer() {
+    return ticTacToe.getCurrentPlayer().name === "Computer"
+  }
+
+  function main(currentPlayer = undefined) {
+    currentPlayer ? checkGameStatus(currentPlayer) : ""
+
+    ticTacToe.switchPlayer()
+    update()
+
+    if (isSinglePlayer() && isComputer()) {
+      let validMoves = []
+      let goodMoves = new Array
+      let boardDOMCell = -1
+
+      ticTacToe.board.rows.forEach(
+        (row, index) => {
+          row.forEach(
+            (cell, i) => {
+              boardDOMCell++
+              cell === "_"
+                ? validMoves.push([boardDOMCell, index, i])
+                : ""
+            });
+        });
+
+      validMoves.forEach(move => {
+        for (let i = 0; i < 2; i++) {
+          ticTacToe.board.rows[move[1]][move[2]] = ticTacToe.getCurrentPlayer()
+          if (ticTacToe.isWin()) goodMoves.push(move)
+          ticTacToe.board.rows[move[1]][move[2]] = "_"
+          ticTacToe.switchPlayer()
+        }
+      });
+
+
+      if (goodMoves.length > 0) {
+        console.log(...goodMoves[0])
+        assign(...goodMoves[0])
+      } else {
+        assign(...validMoves[0])
+      }
+    }
+  }
+  return { update, assign, restart, updateStats, updateTimer }
 }

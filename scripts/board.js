@@ -1,4 +1,4 @@
-const newBoard = () => {
+const Board = () => {
   let rows = [
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -13,11 +13,15 @@ const newBoard = () => {
     }
   }
 
+  function flatten() {
+    return rows.flat()
+  }
+
   function assign(row, column, value) {
     if (rows[row][column] !== "_") return
 
     rows[row][column] = value
   }
 
-  return { rows, reset, assign }
+  return { rows, reset, assign, flatten }
 };

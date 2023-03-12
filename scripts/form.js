@@ -1,10 +1,11 @@
 const prepareGame = (() => {
   let players = new Array;
-  let computer;
 
-  function addPlayerDetailsToArr(name, sign, color) {
+  function extractPlayerInfo(input) {
+    const sign = input.nextElementSibling.textContent
+    const color = input.nextElementSibling.classList[0]
     let player = {
-      name: name,
+      name: input.value,
       mark: {
         value: sign,
         color: color
@@ -12,26 +13,6 @@ const prepareGame = (() => {
     }
 
     players.push(player)
-  }
-
-  function addComputerDetailsToArr(sign, color) {
-    computer = {
-      mark: {
-        value: sign,
-        color: color
-      }
-    }
-  }
-
-  function extractPlayerInfo(input) {
-    const sign = input.nextElementSibling.textContent
-    const color = input.nextElementSibling.classList[0]
-
-    if (input.value) {
-      addPlayerDetailsToArr(input.value, sign, color)
-    } else {
-      addComputerDetailsToArr(sign, color)
-    }
   }
 
   // link DOM elements to API
@@ -83,16 +64,7 @@ const prepareGame = (() => {
     form.remove()
     ticTacToe = gameAPI(players)
 
-    gameEngine().updateStats()
-    gameEngine().updateTimer()
-  }
-
-  function singleOrMultiPlayer() {
-    if (computers.length === 1
-      && players.length === 1) {
-      cp = Computer(computer)
-
-    }
+    gameEngine().update()
   }
 
   (function addGameButtons() {

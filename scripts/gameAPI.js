@@ -1,12 +1,15 @@
 const gameAPI = (players) => {
-  let playerOne = newPlayer(players[0].name, players[0].mark)
-  let playerTwo = newPlayer(players[1].name, players[1].mark)
-  let current = playerOne
-  let board = newBoard()
+  let playerOne = Player(players[0].name, players[0].mark)
+  let playerTwo = Player(players[1].name, players[1].mark)
+  let currentPlayer = playerOne
+  let board = Board()
 
-  function currentPlayer() {
-    return current = current === playerOne ? playerTwo : playerOne
+  const getCurrentPlayer = () => currentPlayer;
+
+  function switchPlayer() {
+    return currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne
   }
+
 
   function isDraw() {
     return board.rows.every(row => {
@@ -54,5 +57,5 @@ const gameAPI = (players) => {
     }
   }
 
-  return { playerTwo, playerOne, currentPlayer, board, isDraw, isWin }
+  return { playerTwo, playerOne, switchPlayer, board, isDraw, isWin, getCurrentPlayer }
 }
