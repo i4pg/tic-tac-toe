@@ -1,21 +1,8 @@
-const gameEngine = () => {
+const game = () => {
   const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
 
-  // this is the flash message to congrats the players
-  function message(status, player = undefined) {
-    return `
-<div id="flash" class="notification is-12 column is-${player ? player.mark.color.split("-")[2] : ""}">
-  <button class="delete"></button>
-${player ?
-        `
-  <strong>${player.name}</strong> congratulations for the winning and face the tough time
-`
-        :
-        `
-<strong>${status}</strong>
-`
-      }
-</div>`
+  function isComputer() {
+    return ticTacToe.getCurrentPlayer().name === "Computer"
   }
 
   function isSinglePlayer() {
@@ -36,6 +23,7 @@ ${player ?
   function restart() {
     ticTacToe.board.reset()
     resetDOMBoard()
+    boardLinkToggle(1)
   }
 
   function updateStats() {
@@ -59,10 +47,29 @@ ${player ?
       : middle.insertAdjacentHTML("afterbegin", message("Draw!"))
   }
 
+  // link DOM elements to API
+  function boardLinkToggle(toggle) {
+    document.querySelectorAll("tr").forEach((row, index) => {
+      [...row.children].forEach((cell, i) => {
+        cell.onclick = () => {
+          if (toggle) {
+            game().assign(cell, index, i)
+          } else {
+            restart()
+            flash.remove()
+          }
+        }
+      });
+    });
+  }
+
   function newRound(player = undefined) {
     insertFlash(player ? player : "")
-    flash.addEventListener("click", () => flash.remove())
-    restart()
+    flash.addEventListener("click", () => {
+      flash.remove()
+      restart()
+    })
+    boardLinkToggle(0)
     updateStats()
   }
 
@@ -107,33 +114,26 @@ ${player ?
     updateTimer()
   }
 
-  function isComputer() {
-    return ticTacToe.getCurrentPlayer().name === "Computer"
-  }
 
-  function main(currentPlayer = undefined) {
-    currentPlayer ? checkGameStatus(currentPlayer) : ""
+  const computer = (() => {
+    function getsValidMoves() {
+      let arr = new Array
+      let cellIndex = -1
 
-    ticTacToe.switchPlayer()
-    update()
-
-    if (isSinglePlayer() && isComputer()) {
-      let validMoves = []
-      let goodMoves = new Array
-      let boardDOMCell = -1
-
-      ticTacToe.board.rows.forEach(
-        (row, index) => {
-          row.forEach(
-            (cell, i) => {
-              boardDOMCell++
-              cell === "_"
-                ? validMoves.push([boardDOMCell, index, i])
-                : ""
-            });
+      ticTacToe.board.rows.forEach((row, index) => {
+        row.forEach((cell, i) => {
+          cellIndex++
+          cell === "_" ? arr.push([cellIndex, index, i]) : ""
         });
+      });
 
-      validMoves.forEach(move => {
+      return arr
+    }
+
+    function getsGoodMoves(moves) {
+      let goodMoves = new Array
+
+      moves.forEach(move => {
         for (let i = 0; i < 2; i++) {
           ticTacToe.board.rows[move[1]][move[2]] = ticTacToe.getCurrentPlayer()
           if (ticTacToe.isWin()) goodMoves.push(move)
@@ -142,14 +142,43 @@ ${player ?
         }
       });
 
-
-      if (goodMoves.length > 0) {
-        console.log(...goodMoves[0])
-        assign(...goodMoves[0])
-      } else {
-        assign(...validMoves[0])
-      }
+      return goodMoves
     }
+
+    function makeMove() {
+      const validMoves = getsValidMoves()
+      const goodMoves = getsGoodMoves(validMoves)
+      const move = goodMoves.length > 0 ? goodMoves[0] : validMoves[0]
+
+      assign(...move)
+    }
+
+    return { makeMove }
+  })()
+
+  function main(currentPlayer = undefined) {
+    currentPlayer ? checkGameStatus(currentPlayer) : ""
+    ticTacToe.switchPlayer()
+    update()
+    isSinglePlayer() && isComputer() ? computer.makeMove() : ""
   }
-  return { update, assign, restart, updateStats, updateTimer }
+
+  // this is the flash message to congrats the players, status param for win or draw, player param incase of winning
+  function message(status, player = undefined) {
+    return `
+<div id="flash" class="notification is-12 column is-${player ? player.mark.color.split("-")[2] : ""}">
+  <button class="delete"></button>
+${player ?
+        `
+  <strong>${player.name}</strong> congratulations for the winning and face the tough time
+`
+        :
+        `
+<strong>${status}</strong>
+`
+      }
+</div>`
+  }
+
+  return { update, assign, restart, updateStats, updateTimer, boardLinkToggle }
 }

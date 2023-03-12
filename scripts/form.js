@@ -15,19 +15,6 @@ const prepareGame = (() => {
     players.push(player)
   }
 
-  // link DOM elements to API
-  (function linkBoardToAPI() {
-    document.querySelectorAll("tr")
-      .forEach((row, index) => {
-        [...row.children]
-          .forEach((cell, i) => {
-            cell.onclick = () => {
-              gameEngine().assign(cell, index, i)
-            }
-          });
-      });
-  })()
-
   function formValidation(inputs) {
     return [...inputs].some((input) => {
       return input.value
@@ -64,7 +51,8 @@ const prepareGame = (() => {
     form.remove()
     ticTacToe = gameAPI(players)
 
-    gameEngine().update()
+    game().boardLinkToggle(1)
+    game().update()
   }
 
   (function addGameButtons() {
@@ -73,7 +61,7 @@ const prepareGame = (() => {
     const start = document.getElementById("start")
 
     newGame.addEventListener("click", () => window.location.reload())
-    restart.addEventListener("click", () => gameEngine().restart())
+    restart.addEventListener("click", () => game().restart())
     start.addEventListener("click", e => setGame(e))
   })()
 })()
