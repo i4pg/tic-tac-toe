@@ -1,9 +1,10 @@
-const prepareGame = (() => {
+const form = (() => {
   let players = new Array;
 
   function extractPlayerInfo(input) {
     const sign = input.nextElementSibling.textContent
     const color = input.nextElementSibling.classList[0]
+
     let player = {
       name: input.value,
       mark: {

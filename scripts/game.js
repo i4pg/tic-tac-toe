@@ -1,13 +1,8 @@
 const game = () => {
   const players = [ticTacToe.playerOne, ticTacToe.playerTwo]
-
-  function isComputer() {
-    return ticTacToe.getCurrentPlayer().name === "Computer"
-  }
-
-  function isSinglePlayer() {
-    return players.some(player => player.name === "Computer")
-  }
+  const isComputer = () => ticTacToe.getCurrentPlayer().name === "Computer"
+  const isSinglePlayer = () => players.some(player => player.name === "Computer")
+  let roundFinished = false
 
   function resetDOMBoard() {
     document.querySelectorAll("tr")
@@ -55,38 +50,44 @@ const game = () => {
           if (toggle) {
             game().assign(cell, index, i)
           } else {
-            restart()
-            flash.remove()
+            refresh()
           }
         }
       });
     });
   }
 
+  function refresh() {
+    roundFinished = false
+    flash.remove()
+    restart()
+    isComputer() ? computer.makeMove() : ""
+  }
+
   function newRound(player = undefined) {
     insertFlash(player ? player : "")
     flash.addEventListener("click", () => {
-      flash.remove()
-      restart()
+      refresh()
     })
     boardLinkToggle(0)
-    updateStats()
   }
 
   function checkGameStatus(currentPlayer) {
     if (ticTacToe.isWin()) {
+      roundFinished = true
       currentPlayer.score++
       newRound(currentPlayer)
     } else if (ticTacToe.isDraw()) {
+      roundFinished = true
       newRound()
     }
   }
 
   function updateTimer() {
-    let p = ticTacToe.getCurrentPlayer()
     const timer = document.getElementById("timer")
     const header = timer.firstElementChild
     const bar = timer.lastElementChild
+    let p = ticTacToe.getCurrentPlayer()
     let color = p.mark.color
     let name = p.name
 
@@ -97,7 +98,10 @@ const game = () => {
 
   function assign(cell, index, i) {
     if (ticTacToe.board.rows[index][i] !== "_") return
-    cell = typeof cell === "number" ? document.querySelectorAll("td")[cell] : cell
+
+    cell = typeof cell === "number"
+      ? document.querySelectorAll("td")[cell]
+      : cell
 
     let p = ticTacToe.getCurrentPlayer()
     let value = p.mark.value
@@ -133,6 +137,7 @@ const game = () => {
     function getsGoodMoves(moves) {
       let goodMoves = new Array
 
+      // First itreation for winning move, second for prevent human win
       moves.forEach(move => {
         for (let i = 0; i < 2; i++) {
           ticTacToe.board.rows[move[1]][move[2]] = ticTacToe.getCurrentPlayer()
@@ -148,7 +153,9 @@ const game = () => {
     function makeMove() {
       const validMoves = getsValidMoves()
       const goodMoves = getsGoodMoves(validMoves)
-      const move = goodMoves.length > 0 ? goodMoves[0] : validMoves[0]
+      const move = goodMoves.length > 0
+        ? goodMoves[0]
+        : validMoves[Math.round(Math.random() * (validMoves.length - 1))]
 
       assign(...move)
     }
@@ -157,10 +164,11 @@ const game = () => {
   })()
 
   function main(currentPlayer = undefined) {
+
     currentPlayer ? checkGameStatus(currentPlayer) : ""
     ticTacToe.switchPlayer()
     update()
-    isSinglePlayer() && isComputer() ? computer.makeMove() : ""
+    isSinglePlayer() && isComputer() && !roundFinished ? computer.makeMove() : ""
   }
 
   // this is the flash message to congrats the players, status param for win or draw, player param incase of winning
