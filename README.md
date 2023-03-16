@@ -27,9 +27,7 @@
 <p>You can play the game online <a href="https://i4pg.github.io/tic-tac-toe/" target="_new">here</a>.</p>
 <h3>Installation</h3>
 <p>To run this program locally, you can clone the repository to your local machine using the following command:</p>
-```
-git clone https://github.com/i4pg/tic-tac-toe.git
-```
+<code>git clone https://github.com/i4pg/tic-tac-toe.git</code>
 <p>Then open the <code>index.html</code> file in your web browser to start playing the game.</p>
 <h2>Contributing</h2>
 <p>Contributions to this project are welcome. To contribute, follow these steps:</p>
@@ -39,16 +37,15 @@ git clone https://github.com/i4pg/tic-tac-toe.git
   </li>
   <li>
     <p>Create a new branch with your changes:</p>
-<code class="!whitespace-pre hljs language-javascript">git checkout -b my-<span class="hljs-keyword">new</span>-branch
-</code>
+    <code>git checkout -b my-new-branch</code>
   </li>
   <li>
     <p>Make your changes and commit them:</p>
-    ```git commit -am 'Add some feature'```
+    <code>git commit -am 'Add some feature'</code>
   </li>
   <li>
     <p>Push your changes to your forked repository:</p>
-    ```git push origin my-new-branch```
+    <code>git push origin my-new-branch</code>
   </li>
   <li>
     <p>Create a pull request on this repository.</p>
