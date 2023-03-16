@@ -21,32 +21,13 @@
 <h2>Showcase</h2>
 <p>Here are some screenshots of the Tic Tac Toe game:</p>
 <p><img src="./assest/showcase/cp1.gif" width="500px" /></p>
-<p><img src="./assest/showcase/cp2.gif" width="500px" /></p>
 <p><img src="./assest/showcase/multi.gif" width="500px" /></p>
-<p><img src="./assest/showcase/mobile.gif" width="500px" /></p>
-<p><img src="./assest/showcase/desktop.gif" width="500px" /></p>
 <h2>Getting Started</h2>
 <h3>Usage</h3>
 <p>You can play the game online <a href="https://i4pg.github.io/tic-tac-toe/" target="_new">here</a>.</p>
 <h3>Installation</h3>
 <p>To run this program locally, you can clone the repository to your local machine using the following command:</p>
-<pre>
-  <div class="bg-black rounded-md mb-4">
-    <div
-      class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md">
-      <span>bash</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
-          xmlns="http://www.w3.org/2000/svg" style="--darkreader-inline-stroke: currentColor;"
-          data-darkreader-inline-stroke="">
-          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-        </svg>Copy code</button>
-    </div>
-    <div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-bash">git <span
-          class="hljs-built_in">clone</span> https://github.com/i4pg/tic-tac-toe.git
-      </code></div>
-  </div>
-</pre>
+`git clone https://github.com/i4pg/tic-tac-toe.git`
 <p>Then open the <code>index.html</code> file in your web browser to start playing the game.</p>
 <h2>Contributing</h2>
 <p>Contributions to this project are welcome. To contribute, follow these steps:</p>
@@ -56,64 +37,15 @@
   </li>
   <li>
     <p>Create a new branch with your changes:</p>
-    <pre>
-      <div class="bg-black rounded-md mb-4">
-        <div
-          class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md">
-          <span>javascript</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none"
-              stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
-              height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"
-              style="--darkreader-inline-stroke: currentColor;" data-darkreader-inline-stroke="">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-            </svg>Copy code</button>
-        </div>
-        <div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript">git checkout -b my-<span
-              class="hljs-keyword">new</span>-branch
-          </code></div>
-      </div>
-    </pre>
+    `git checkout -b my-new-branch`
   </li>
   <li>
     <p>Make your changes and commit them:</p>
-    <pre>
-      <div class="bg-black rounded-md mb-4">
-        <div
-          class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md">
-          <span>sql</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
-              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
-              width="1em" xmlns="http://www.w3.org/2000/svg" style="--darkreader-inline-stroke: currentColor;"
-              data-darkreader-inline-stroke="">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-            </svg>Copy code</button>
-        </div>
-        <div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-sql">git <span
-              class="hljs-keyword">commit</span> <span class="hljs-operator">-</span>am <span class="hljs-string">'Add
-              some feature'</span>
-          </code></div>
-      </div>
-    </pre>
+    `git commit -am 'Add some feature'`
   </li>
   <li>
     <p>Push your changes to your forked repository:</p>
-    <pre>
-      <div class="bg-black rounded-md mb-4">
-        <div
-          class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md">
-          <span>perl</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
-              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
-              width="1em" xmlns="http://www.w3.org/2000/svg" style="--darkreader-inline-stroke: currentColor;"
-              data-darkreader-inline-stroke="">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-            </svg>Copy code</button>
-        </div>
-        <div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-perl">git <span
-              class="hljs-keyword">push</span> origin <span class="hljs-keyword">my</span>-new-branch
-          </code></div>
-      </div>
-    </pre>
+    `git push origin my-new-branch`
   </li>
   <li>
     <p>Create a pull request on this repository.</p>
