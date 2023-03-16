@@ -37,15 +37,15 @@
   </li>
   <li>
     <p>Create a new branch with your changes:</p>
-    `git checkout -b my-new-branch`
+    <code>git checkout -b my-new-branch</code>
   </li>
   <li>
     <p>Make your changes and commit them:</p>
-    `git commit -am 'Add some feature'`
+    <code>git commit -am 'Add some feature'</code>
   </li>
   <li>
     <p>Push your changes to your forked repository:</p>
-    `git push origin my-new-branch`
+    <code>git push origin my-new-branch</code>
   </li>
   <li>
     <p>Create a pull request on this repository.</p>
